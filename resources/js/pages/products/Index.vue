@@ -1,7 +1,7 @@
 <script setup lang="ts">
-//import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.vue';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Button from '@/components/ui/button/Button.vue';
-//import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table.vue';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
@@ -22,12 +22,12 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="p-4">
-            <div v-if="page.props.flash" class="alert">
+            <div v-if="page.props.flash.message" class="alert">
                 <Alert class="bg-blue-200">
                     <Rocket class="h-4 w-4" />
                     <AlertTitle>Notificación</AlertTitle>
                     <AlertDescription>
-                        {{ page.props.flash }}
+                        {{ page.props.flash.message }}
                     </AlertDescription>
                 </Alert>
             </div>
