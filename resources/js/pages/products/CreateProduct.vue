@@ -12,14 +12,14 @@ const form = useForm({
     description: '',
 });
 
-//Configuración por defecto de el historia de ruta
+//Configuración por defecto de el historia de navegación
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Adicionar Producto',
         href: 'products.create_product',
     },
 ];
-//Redirigiendo la informacion al backend a travez de la ruta
+//Redirigiendo la informacion al backend a travez de la ruta, manejando submit
 const heandleSubmit = () => {
     form.post(route('products.store'));
 };

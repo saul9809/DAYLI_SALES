@@ -6,8 +6,20 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { Rocket } from 'lucide-vue-next';
-const page = usePage();
 
+interface Product {
+    id: number;
+    name: string;
+    description: string;
+}
+
+interface Props {
+    products: Product[];
+}
+//Asignanado propiedades al sitio
+const page = usePage();
+//Resiviendo datos desde el controlador a partir del metodo defineProps de inertia
+const props = defineProps<Props>();
 //Configuración pordefecto de la ruta
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -21,8 +33,9 @@ const breadcrumbs: BreadcrumbItem[] = [
     <Head title="Productos" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
+        <!--Notificación de producto guardado-->
         <div class="p-4">
-            <div v-if="page.props.flash.message" class="alert">
+            <div v-if="page.props.flash?.message" class="alert">
                 <Alert class="bg-blue-200">
                     <Rocket class="h-4 w-4" />
                     <AlertTitle>Notificación</AlertTitle>
@@ -32,27 +45,29 @@ const breadcrumbs: BreadcrumbItem[] = [
                 </Alert>
             </div>
             <div>
+                <Link :href="route('products.create_product')"><Button>Add Producto</Button></Link>
+            </div>
+            <!--Tabla que lista el producto-->
+            <div>
                 <Table>
-                    <TableCaption>A list of your recent invoices.</TableCaption>
+                    <TableCaption>Lista del producto añadido reciente.</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[100px]">Invoice</TableHead>
-                            <TableHead>Status</TableHead>
-                            <TableHead>Method</TableHead>
-                            <TableHead className="text-right">Amount</TableHead>
+                            <TableHead>ID</TableHead>
+                            <TableHead>Nombre</TableHead>
+                            <TableHead>Descripción</TableHead>
+                            <TableHead class="text-center">Acciones</TableHead>
                         </TableRow>
                     </TableHeader>
-                    <TableBody>
+                    <TableBody v-for="product in props.products">
                         <TableRow>
-                            <TableCell className="font-medium">INV001</TableCell>
-                            <TableCell>Paid</TableCell>
-                            <TableCell>Credit Card</TableCell>
-                            <TableCell className="text-right">$250.00</TableCell>
+                            <TableCell>{{ product.id }}</TableCell>
+                            <TableCell>{{ product.name }}</TableCell>
+                            <TableCell>{{ product.description }}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
             </div>
-            <Link :href="route('products.create_product')"><Button>Add Producto</Button></Link>
         </div>
     </AppLayout>
 </template>
