@@ -28,7 +28,6 @@
         "vue-tsc": "^2.2.4",
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
-        "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.4.47"
     },
     "dependencies": {
