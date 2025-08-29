@@ -59,7 +59,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             <TableHead class="text-center">Acciones</TableHead>
                         </TableRow>
                     </TableHeader>
-                    <TableBody v-for="product in props.products">
+                    <TableBody v-for="product in props.products" :key="product.id">
                         <TableRow>
                             <TableCell>{{ product.id }}</TableCell>
                             <TableCell>{{ product.name }}</TableCell>
