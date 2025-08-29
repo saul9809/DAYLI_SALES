@@ -10,14 +10,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Inertia::render('products/Index');
+        //Metodo latest ordena de forma desendiente por fecha de las mas antigua a la nueva 
+        $products = Product::latest()->get(); //Listando información
+        return Inertia::render('products/Index', compact('products')); //Listando y acomodando los datos e información
     }
 
     public function create_product()
     {
         return Inertia::render('products/CreateProduct');
     }
-
     public function store_product(Request $request)
     {
         //Validando los datos antes de persistirlos   
