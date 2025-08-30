@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "build": "vite build && mv public/build/.vite/manifest.json public/build/manifest.json",
         "dev": "vite",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
